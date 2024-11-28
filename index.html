@@ -16,7 +16,15 @@
                 document.getElementById('pesan').style.display = 'block';
                 localStorage.setItem('pesanDilihat', 'true');
                 // Panggil webhook GitHub Actions di sini
-                fetch('https://github.com/diyyo/lab/settings/hooks/515634762', { method: 'POST' });
+                fetch('https://api.github.com/repos/diyyo/lab/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/vnd.github.everest-preview+json',
+                    'Authorization': 'token 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',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ event_type: 'delete_file' }) // Replace 'webhook' with your event type
+            });
             }
         }
     </script>
