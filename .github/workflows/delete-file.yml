@@ -1,0 +1,21 @@
+name: Delete File
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [delete_file]
+
+jobs:
+  delete_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Delete specific file
+        run: |
+          rm -f delete.txt
+          git config --local user.name "github-actions"
+          git config --local user.email "action@github.com"
+          git commit -am "Delete file after message viewed"
+          git push
